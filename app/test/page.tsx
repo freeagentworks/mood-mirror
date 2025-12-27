@@ -90,7 +90,7 @@ export default function TestPage() {
   };
 
   return (
-    <main className="space-y-6 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur sm:p-10">
+    <main className="glass-card space-y-6 p-5 sm:p-10">
       <header className="space-y-3">
         <div className="flex justify-between">
           <Link
@@ -153,7 +153,7 @@ export default function TestPage() {
               type="button"
               onClick={handleNext}
               disabled={!pageComplete}
-              className="rounded-full bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-60"
+              className="cta-button text-sm disabled:cursor-not-allowed disabled:opacity-60"
             >
               次へ
             </button>
@@ -162,7 +162,7 @@ export default function TestPage() {
               type="button"
               onClick={handleSubmit}
               disabled={!allComplete}
-              className="rounded-full bg-emerald-400 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg transition hover:bg-emerald-300 disabled:cursor-not-allowed disabled:opacity-60"
+              className="cta-button text-sm disabled:cursor-not-allowed disabled:opacity-60"
             >
               結果を見る
             </button>
@@ -184,7 +184,7 @@ function QuestionCard({
 }) {
   const options = [1, 2, 3, 4, 5];
   return (
-    <div className="rounded-2xl border border-white/10 bg-slate-950/50 p-4 shadow-sm">
+    <div className="glass-card border-white/10 bg-slate-950/50 p-4 shadow-sm">
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div>
           <p className="text-sm font-semibold text-white">

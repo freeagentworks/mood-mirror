@@ -64,7 +64,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-b from-slate-950 via-slate-900 to-slate-900 text-slate-50`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-b from-[#060815] via-[#050712] to-[#04060d] text-slate-50`}
         suppressHydrationWarning
       >
         <div className="relative mx-auto min-h-screen w-full max-w-5xl px-4 py-8 sm:px-10 sm:py-10">

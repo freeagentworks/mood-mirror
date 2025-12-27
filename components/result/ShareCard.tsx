@@ -70,7 +70,7 @@ export function ShareCard({ result }: { result: Result }) {
         type="button"
         onClick={handleDownload}
         disabled={downloading}
-        className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-lg transition hover:translate-y-[-1px] disabled:cursor-not-allowed disabled:opacity-60"
+        className="cta-button text-sm disabled:cursor-not-allowed disabled:opacity-60"
       >
         {downloading ? "生成中..." : "画像を保存"}
       </button>

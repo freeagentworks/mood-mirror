@@ -1,55 +1,71 @@
 import { Reveal } from "@/components/ui/Reveal";
 import { InteractiveCard } from "@/components/ui/InteractiveCard";
-
-const links = [
-  { href: "/test", label: "診断フロー (/test)" },
-  { href: "/result", label: "結果ビュー (/result)" },
-  { href: "/privacy", label: "プライバシー (/privacy)" },
-  { href: "/faq", label: "FAQ (/faq)" },
-];
+import { InteractiveButton } from "@/components/ui/InteractiveButton";
 
 export default function Home() {
   return (
-    <main className="space-y-10 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur sm:p-10">
+    <main className="glass-card space-y-8 p-5 text-center sm:p-10">
       <Reveal>
-        <div className="space-y-4">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-cyan-300/80">
-            Mood Mirror MVP scaffold
-          </p>
+        <div className="space-y-3">
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-cyan-300/80">Mood Mirror</p>
           <h1 className="text-3xl font-semibold leading-tight text-white sm:text-4xl">
-            キラッと診断アプリの土台、できちゃいました
+            キラッとわかる、わたしの今の気分
           </h1>
-          <p className="max-w-3xl text-lg text-slate-200/80">
-            友だちと結果を見せ合えるキラキラ診断のベースです。MBTIより広い科学モデル（Big Five/HEXACO＋アタッチメント＋SDT）で、精度も信頼度もワンランク上。質問・結果・シェアまで動くので、ここからUIを盛り付けて自分たちだけの診断を仕上げてみてね。
+          <p className="text-base text-slate-200/85">
+            MBTIよりちょっと深め。科学モデルで今のわたしをふわっと教えてくれるかも。
           </p>
+          <ul className="mt-2 space-y-1 text-sm text-slate-200/85 list-disc list-inside text-left inline-block">
+            <li>5分でサクッと、でも精度はしっかりめ</li>
+            <li>結果カードをすぐ画像保存、かわいくシェア</li>
+            <li>動きはきらっと、疲れたらやさしく静かに</li>
+          </ul>
         </div>
       </Reveal>
 
       <Reveal delay={80}>
-        <section className="grid gap-4 sm:grid-cols-2">
-          {links.map((link) => (
-            <InteractiveCard
-              key={link.href}
-              href={link.href}
-              className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 p-4 text-base font-medium text-white shadow-sm transition hover:border-cyan-300/60 hover:bg-white/10"
-            >
-              <span>{link.label}</span>
-              <span aria-hidden className="text-cyan-200">→</span>
-            </InteractiveCard>
-          ))}
-        </section>
+        <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-4">
+          <InteractiveButton
+            href="/test"
+            className="text-base font-semibold"
+          >
+            診断する（5分）
+          </InteractiveButton>
+          <InteractiveButton
+            href="/result"
+            className="glass-card border-white/15 bg-white/5 px-4 py-3 text-sm font-semibold text-white transition hover:border-cyan-300/60 hover:bg-white/10 text-center"
+          >
+            結果サンプルを見る
+          </InteractiveButton>
+        </div>
       </Reveal>
 
-      <Reveal delay={120}>
-        <section className="rounded-2xl border border-white/10 bg-slate-950/50 p-5 text-sm text-slate-200/80">
-          <p className="font-semibold text-white">次のステップ</p>
-          <ul className="mt-2 space-y-1 list-disc list-inside">
-            <li>設問データ `data/questions.ts` を実装（I-100）。</li>
-            <li>スコアリング純関数 `lib/scoring/` とテスト（I-110）。</li>
-            <li>/test UIを12問×4ページで構成し、ローカル保存を追加（I-200〜I-210）。</li>
-            <li>結果ページA〜Dの骨組みとシェア導線を組み立てる（I-220 / I-500）。</li>
-          </ul>
-        </section>
+      <Reveal delay={140}>
+        <div className="flex flex-wrap justify-center gap-2 text-sm text-slate-200/80">
+          <InteractiveCard
+            href="/privacy"
+            className="glass-card border-white/10 bg-white/5 px-3 py-2 text-center text-sm text-white transition hover:border-cyan-300/60 hover:bg-white/10"
+          >
+            プライバシー
+          </InteractiveCard>
+          <InteractiveCard
+            href="/faq"
+            className="glass-card border-white/10 bg-white/5 px-3 py-2 text-center text-sm text-white transition hover:border-cyan-300/60 hover:bg-white/10"
+          >
+            FAQ
+          </InteractiveCard>
+          <InteractiveCard
+            href="/test"
+            className="glass-card border-white/10 bg-white/5 px-3 py-2 text-center text-sm text-white transition hover:border-cyan-300/60 hover:bg-white/10"
+          >
+            診断する
+          </InteractiveCard>
+          <InteractiveCard
+            href="/result"
+            className="glass-card border-white/10 bg-white/5 px-3 py-2 text-center text-sm text-white transition hover:border-cyan-300/60 hover:bg-white/10"
+          >
+            結果ビューを見る
+          </InteractiveCard>
+        </div>
       </Reveal>
     </main>
   );

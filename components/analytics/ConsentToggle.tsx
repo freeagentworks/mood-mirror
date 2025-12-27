@@ -12,7 +12,7 @@ export function ConsentToggle() {
   };
 
   return (
-    <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-slate-100 shadow-sm">
+    <div className="pill flex items-center gap-2 px-3 py-1.5 text-xs text-slate-100">
       <span className="text-[11px] uppercase tracking-[0.15em] text-cyan-200/90">Analytics</span>
       <button
         type="button"

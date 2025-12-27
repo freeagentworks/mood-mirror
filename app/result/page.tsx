@@ -6,6 +6,7 @@ import { Result } from "@/lib/scoring";
 import { loadJson, STORAGE_KEYS } from "@/lib/storage";
 import { ShareCard } from "@/components/result/ShareCard";
 import { buildNarrative } from "@/lib/narrative";
+import { SdtPanel } from "@/components/result/SdtPanel";
 
 type BarItem = { label: string; value: number; tone?: string };
 
@@ -22,7 +23,7 @@ export default function ResultPage() {
 
   if (!hydrated) {
     return (
-      <main className="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur sm:p-10">
+    <main className="glass-card space-y-4 p-5 sm:p-10">
         <p className="text-sm text-slate-200/80">読み込み中...</p>
       </main>
     );
@@ -30,7 +31,7 @@ export default function ResultPage() {
 
   if (!result) {
     return (
-      <main className="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur sm:p-10">
+      <main className="glass-card space-y-4 p-5 sm:p-10">
         <Link
           href="/"
           className="text-sm text-cyan-200 underline-offset-4 transition hover:underline"
@@ -63,16 +64,10 @@ export default function ResultPage() {
     { label: "回避", value: result.scores.Avd },
   ];
 
-  const sdtBars: BarItem[] = [
-    { label: "自律", value: result.scores.Aut },
-    { label: "有能感", value: result.scores.Com },
-    { label: "関係性", value: result.scores.Rel },
-  ];
-
   const narrative = buildNarrative(result);
 
   return (
-    <main className="space-y-8 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur sm:p-10">
+    <main className="glass-card space-y-8 p-5 sm:p-10">
       <header className="space-y-3">
         <div className="flex justify-between">
           <Link
@@ -99,7 +94,7 @@ export default function ResultPage() {
       </header>
 
       <section className="grid gap-6 lg:grid-cols-3">
-        <div className="rounded-3xl border border-white/10 bg-slate-950/50 p-5 lg:col-span-2">
+        <div className="glass-card border-white/10 bg-slate-950/50 p-5 lg:col-span-2">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200/80">
             Archetype
           </p>
@@ -113,14 +108,14 @@ export default function ResultPage() {
             </li>
           </ul>
         </div>
-        <div className="rounded-3xl border border-white/10 bg-slate-950/50 p-5">
+        <div className="glass-card border-white/10 bg-slate-950/50 p-5">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200/80">シェア</p>
           <p className="mt-1 text-sm text-slate-200/80">PNGを生成して保存・共有できます。</p>
           <ShareCard result={result} />
         </div>
       </section>
 
-      <section className="rounded-3xl border border-white/10 bg-slate-950/50 p-5">
+      <section className="glass-card border-white/10 bg-slate-950/50 p-5">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200/80">ストーリー</p>
         <h2 className="mt-2 text-xl font-semibold text-white">{narrative.headline}</h2>
         <p className="mt-1 text-sm text-slate-200/80">{narrative.summary}</p>
@@ -155,7 +150,7 @@ export default function ResultPage() {
       </section>
 
       <section className="grid gap-6 lg:grid-cols-2">
-        <ScoreBlock title="SDT 3欲求" subtitle="満たされ度" items={sdtBars} />
+        <SdtPanel result={result} />
         <Advice needsMean={result.derived.needsMean} needsBottleneck={result.derived.needsBottleneck} />
       </section>
 
@@ -183,7 +178,7 @@ function ScoreBlock({
   items: BarItem[];
 }) {
   return (
-    <div className="rounded-3xl border border-white/10 bg-slate-950/50 p-5">
+    <div className="glass-card border-white/10 bg-slate-950/50 p-5">
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200/80">{title}</p>
       <p className="text-xs text-slate-300/80">{subtitle}</p>
       <div className="mt-4 space-y-3">
@@ -214,7 +209,7 @@ function AttachmentHint({ style }: { style: Result["derived"]["attachmentStyle"]
     Fearful: "不安と距離取りの両方が強い時期。小さく安全な関わりから慣らしましょう。",
   } as const;
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-slate-200/80">
+    <div className="glass-card border-white/10 bg-white/5 p-4 text-sm text-slate-200/80">
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200/80">解釈</p>
       <p className="mt-1 text-white">{style}</p>
       <p className="mt-1 text-sm text-slate-200/80">{texts[style]}</p>
@@ -229,7 +224,7 @@ function Advice({ needsMean, needsBottleneck }: { needsMean: number; needsBottle
     "関係性: 安心できる人に短いメッセージを送ってみる",
   ];
   return (
-    <div className="rounded-3xl border border-white/10 bg-slate-950/50 p-5">
+    <div className="glass-card border-white/10 bg-slate-950/50 p-5">
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200/80">今日の一手</p>
       <p className="text-xs text-slate-300/80">SDT平均 {needsMean.toFixed(1)} / 最低値 {needsBottleneck.toFixed(1)} を底上げ</p>
       <ul className="mt-3 space-y-2 text-sm text-slate-200/85">
