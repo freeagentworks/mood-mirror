@@ -51,7 +51,6 @@ export function InteractiveButton({ children, className = "", disabled, onClick,
       };
 
   const sharedProps = {
-    ref,
     onMouseMove: onMove,
     onMouseLeave: () => {
       reset();
@@ -65,14 +64,20 @@ export function InteractiveButton({ children, className = "", disabled, onClick,
 
   if (href) {
     return (
-      <a {...sharedProps} href={href} aria-disabled={disabled}>
+      <a {...sharedProps} ref={ref as React.RefObject<HTMLAnchorElement>} href={href} aria-disabled={disabled}>
         {children}
       </a>
     );
   }
 
   return (
-    <button {...sharedProps} type="button" disabled={disabled} onClick={onClick}>
+    <button
+      {...sharedProps}
+      ref={ref as React.RefObject<HTMLButtonElement>}
+      type="button"
+      disabled={disabled}
+      onClick={onClick}
+    >
       {children}
     </button>
   );
