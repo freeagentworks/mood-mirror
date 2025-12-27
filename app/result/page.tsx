@@ -1,17 +1,32 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Result } from "@/lib/scoring";
 import { loadJson, STORAGE_KEYS } from "@/lib/storage";
 import { ShareCard } from "@/components/result/ShareCard";
+import { buildNarrative } from "@/lib/narrative";
 
 type BarItem = { label: string; value: number; tone?: string };
 
 export default function ResultPage() {
-  const [result] = useState<Result | null>(() =>
-    loadJson<Result | null>(STORAGE_KEYS.resultLatest, null),
-  );
+  const [result, setResult] = useState<Result | null>(null);
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    const saved = loadJson<Result | null>(STORAGE_KEYS.resultLatest, null);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setResult(saved);
+    setHydrated(true);
+  }, []);
+
+  if (!hydrated) {
+    return (
+      <main className="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur sm:p-10">
+        <p className="text-sm text-slate-200/80">読み込み中...</p>
+      </main>
+    );
+  }
 
   if (!result) {
     return (
@@ -54,6 +69,8 @@ export default function ResultPage() {
     { label: "関係性", value: result.scores.Rel },
   ];
 
+  const narrative = buildNarrative(result);
+
   return (
     <main className="space-y-8 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur sm:p-10">
       <header className="space-y-3">
@@ -87,15 +104,45 @@ export default function ResultPage() {
             Archetype
           </p>
           <h2 className="mt-2 text-2xl font-semibold text-white">{result.archetype.label}</h2>
-          <p className="mt-1 text-sm text-slate-200/80">{result.archetype.description}</p>
-          <p className="mt-3 text-xs text-slate-300/80">
-            Attachment: {result.derived.attachmentStyle} / SDT平均 {result.derived.needsMean.toFixed(1)} / 最低値 {result.derived.needsBottleneck.toFixed(1)}
-          </p>
+          <p className="mt-1 text-sm text-slate-200/80">{narrative.summary}</p>
+          <ul className="mt-3 space-y-1 text-sm text-slate-200/80 list-disc list-inside">
+            <li>強み: {narrative.strengths[0]}</li>
+            <li>注意: {narrative.watchout}</li>
+            <li>
+              Attachment: {result.derived.attachmentStyle} / SDT平均 {result.derived.needsMean.toFixed(1)} / 最低値 {result.derived.needsBottleneck.toFixed(1)}
+            </li>
+          </ul>
         </div>
         <div className="rounded-3xl border border-white/10 bg-slate-950/50 p-5">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200/80">シェア</p>
           <p className="mt-1 text-sm text-slate-200/80">PNGを生成して保存・共有できます。</p>
           <ShareCard result={result} />
+        </div>
+      </section>
+
+      <section className="rounded-3xl border border-white/10 bg-slate-950/50 p-5">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200/80">ストーリー</p>
+        <h2 className="mt-2 text-xl font-semibold text-white">{narrative.headline}</h2>
+        <p className="mt-1 text-sm text-slate-200/80">{narrative.summary}</p>
+        <div className="mt-4 space-y-2 text-sm text-slate-200/85">
+          <p className="font-semibold text-white">強み</p>
+          <ul className="space-y-1 list-disc list-inside">
+            {narrative.strengths.map((s) => (
+              <li key={s}>{s}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="mt-3 space-y-2 text-sm text-slate-200/85">
+          <p className="font-semibold text-white">気をつけたいこと</p>
+          <p className="text-slate-200/80">{narrative.watchout}</p>
+        </div>
+        <div className="mt-3 space-y-2 text-sm text-slate-200/85">
+          <p className="font-semibold text-white">今日のアクション</p>
+          <ul className="space-y-1 list-disc list-inside">
+            {narrative.actions.map((a) => (
+              <li key={a}>{a}</li>
+            ))}
+          </ul>
         </div>
       </section>
 
