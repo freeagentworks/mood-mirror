@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   title: "Mood Mirror",
   description:
     "3D Personality app scaffolded for the Mood Mirror MVP (Next.js 16).",
+  manifest: "/manifest.webmanifest",
   icons: {
     icon: "/icon.png",
     shortcut: "/favicon.png",
