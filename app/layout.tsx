@@ -67,7 +67,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-b from-slate-950 via-slate-900 to-slate-900 text-slate-50`}
         suppressHydrationWarning
       >
-        <div className="relative mx-auto min-h-screen max-w-5xl px-6 py-10 sm:px-10">
+        <div className="relative mx-auto min-h-screen w-full max-w-5xl px-4 py-8 sm:px-10 sm:py-10">
           <Scene />
           <div className="relative z-10 flex flex-col gap-4">
             <div className="flex justify-end">

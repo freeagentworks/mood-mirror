@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function PrivacyPage() {
   return (
-    <main className="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur sm:p-10">
+    <main className="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur sm:p-10">
       <div className="flex justify-between">
         <Link
           href="/"

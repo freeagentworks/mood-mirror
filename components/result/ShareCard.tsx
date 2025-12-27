@@ -29,8 +29,7 @@ export function ShareCard({ result }: { result: Result }) {
     <div className="space-y-3">
       <div
         ref={ref}
-        className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-indigo-500/70 via-cyan-400/50 to-amber-200/60 p-5 text-slate-950 shadow-2xl"
-        style={{ width: 480 }}
+        className="relative w-full max-w-[480px] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-indigo-500/70 via-cyan-400/50 to-amber-200/60 p-5 text-slate-950 shadow-2xl"
       >
         <div className="absolute inset-0 bg-white/10 backdrop-blur-sm" />
         <div className="relative space-y-3">

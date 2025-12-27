@@ -10,7 +10,7 @@ const links = [
 
 export default function Home() {
   return (
-    <main className="space-y-10 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur sm:p-10">
+    <main className="space-y-10 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur sm:p-10">
       <Reveal>
         <div className="space-y-4">
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-cyan-300/80">

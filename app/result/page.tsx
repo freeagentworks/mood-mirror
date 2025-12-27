@@ -15,7 +15,7 @@ export default function ResultPage() {
 
   if (!result) {
     return (
-      <main className="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur sm:p-10">
+      <main className="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur sm:p-10">
         <Link
           href="/"
           className="text-sm text-cyan-200 underline-offset-4 transition hover:underline"
@@ -55,7 +55,7 @@ export default function ResultPage() {
   ];
 
   return (
-    <main className="space-y-8 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur sm:p-10">
+    <main className="space-y-8 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur sm:p-10">
       <header className="space-y-3">
         <div className="flex justify-between">
           <Link

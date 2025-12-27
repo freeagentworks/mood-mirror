@@ -90,7 +90,7 @@ export default function TestPage() {
   };
 
   return (
-    <main className="space-y-6 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur sm:p-10">
+    <main className="space-y-6 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur sm:p-10">
       <header className="space-y-3">
         <div className="flex justify-between">
           <Link
