@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const faqs = [
   {
     q: "テストデータはどこにありますか？",
@@ -20,6 +22,14 @@ const faqs = [
 export default function FaqPage() {
   return (
     <main className="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur sm:p-10">
+      <div className="flex justify-between">
+        <Link
+          href="/"
+          className="text-sm text-cyan-200 underline-offset-4 transition hover:underline"
+        >
+          ← ホームにもどる
+        </Link>
+      </div>
       <header className="space-y-2">
         <p className="text-sm font-medium uppercase tracking-[0.2em] text-cyan-300/80">
           FAQ

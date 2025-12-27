@@ -16,6 +16,12 @@ export default function ResultPage() {
   if (!result) {
     return (
       <main className="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur sm:p-10">
+        <Link
+          href="/"
+          className="text-sm text-cyan-200 underline-offset-4 transition hover:underline"
+        >
+          ← ホームにもどる
+        </Link>
         <h1 className="text-2xl font-semibold text-white">結果がまだありません</h1>
         <p className="text-sm text-slate-200/80">/test で全48問に回答すると結果が表示されます。</p>
         <Link
@@ -51,6 +57,14 @@ export default function ResultPage() {
   return (
     <main className="space-y-8 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur sm:p-10">
       <header className="space-y-3">
+        <div className="flex justify-between">
+          <Link
+            href="/"
+            className="text-sm text-cyan-200 underline-offset-4 transition hover:underline"
+          >
+            ← ホームにもどる
+          </Link>
+        </div>
         <p className="text-sm font-medium uppercase tracking-[0.2em] text-cyan-300/80">
           結果
         </p>

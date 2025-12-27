@@ -17,11 +17,10 @@ export default function Home() {
             Mood Mirror MVP scaffold
           </p>
           <h1 className="text-3xl font-semibold leading-tight text-white sm:text-4xl">
-            Next.js 16 App Router ベースの診断アプリ土台
+            キラッと診断アプリの土台、できちゃいました
           </h1>
           <p className="max-w-3xl text-lg text-slate-200/80">
-            `docs/` のPRD・UX・スコアリング仕様に沿って開発するための初期セットアップです。
-            ルーティング骨組み、Tailwind 4、ESLint/TypeScriptを含みます。
+            友だちと結果を見せ合えるキラキラ診断のベースです。質問・結果・シェアまで動くので、ここからUIを盛り付けて自分たちだけの診断を仕上げてみてね。
           </p>
         </div>
       </Reveal>

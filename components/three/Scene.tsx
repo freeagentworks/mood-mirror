@@ -5,31 +5,35 @@ import { useEffect, useMemo, useState } from "react";
 
 const ThreeBackground = dynamic(
   () => import("./ThreeBackground").then((m) => m.ThreeBackground),
-  { ssr: false, loading: () => <FallbackGradient /> },
+  { ssr: false, loading: () => null },
 );
 
 const isClient = () => typeof window !== "undefined";
 
 export function Scene() {
-  const [canRender3D, setCanRender3D] = useState(() => {
-    if (!isClient()) return false;
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    return !media.matches && !!window.WebGLRenderingContext;
-  });
+  const [ready, setReady] = useState(false);
+  const [canRender3D, setCanRender3D] = useState(false);
 
   useEffect(() => {
     if (!isClient()) return;
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const handler = () => setCanRender3D(!media.matches && !!window.WebGLRenderingContext);
+    const compute = () => !media.matches && !!window.WebGLRenderingContext;
+    setTimeout(() => {
+      setCanRender3D(compute());
+      setReady(true);
+    }, 0);
+    const handler = () => setCanRender3D(compute());
     media.addEventListener("change", handler);
     return () => media.removeEventListener("change", handler);
   }, []);
 
   const fallback = useMemo(() => <FallbackGradient />, []);
 
+  const show3D = ready && canRender3D;
+
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      {canRender3D ? <ThreeBackground /> : fallback}
+      {show3D ? <ThreeBackground /> : fallback}
     </div>
   );
 }

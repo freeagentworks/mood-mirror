@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Answers, pageCount, questionsByPage, Question, Scale } from "@/data/questions";
@@ -27,11 +28,19 @@ export default function TestPage() {
   const [answers, setAnswers] = useState<Answers>(() =>
     loadJson<Answers>(STORAGE_KEYS.answersDraft, {}),
   );
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(() => {
+    const saved = loadJson<number | null>(STORAGE_KEYS.progressPage, null);
+    if (saved !== null) return Math.min(Math.max(saved, 0), pageCount - 1);
+    return computePageFromAnswers(loadJson<Answers>(STORAGE_KEYS.answersDraft, {}));
+  });
 
   useEffect(() => {
     saveJson(STORAGE_KEYS.answersDraft, answers);
   }, [answers]);
+
+  useEffect(() => {
+    saveJson(STORAGE_KEYS.progressPage, page);
+  }, [page]);
 
   useEffect(() => {
     track({ type: "start" });
@@ -57,6 +66,7 @@ export default function TestPage() {
   const handleSubmit = () => {
     const result = scoreAnswers(answers);
     saveJson(STORAGE_KEYS.resultLatest, result);
+    saveJson(STORAGE_KEYS.progressPage, 0);
     track({ type: "complete", answered: answersCount(answers) });
     router.push("/result");
   };
@@ -65,12 +75,21 @@ export default function TestPage() {
     setAnswers({});
     saveJson(STORAGE_KEYS.answersDraft, {});
     clearKey(STORAGE_KEYS.resultLatest);
+    saveJson(STORAGE_KEYS.progressPage, 0);
     setPage(0);
   };
 
   return (
     <main className="space-y-6 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur sm:p-10">
       <header className="space-y-3">
+        <div className="flex justify-between">
+          <Link
+            href="/"
+            className="text-sm text-cyan-200 underline-offset-4 transition hover:underline"
+          >
+            ← ホームにもどる
+          </Link>
+        </div>
         <p className="text-sm font-medium uppercase tracking-[0.2em] text-cyan-300/80">
           診断フロー
         </p>
@@ -167,7 +186,12 @@ function QuestionCard({
           <span className="rounded-full bg-amber-500/20 px-2 py-1 text-[11px] text-amber-100">品質チェック</span>
         )}
       </div>
-      <div className="mt-3 flex flex-wrap gap-2">
+      <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-200/70">
+        <span>そう思わない</span>
+        <span className="text-xs text-slate-300/80">1〜5を選択</span>
+        <span>とてもそう思う</span>
+      </div>
+      <div className="mt-2 flex flex-wrap gap-2">
         {options.map((opt) => (
           <button
             key={opt}
@@ -203,3 +227,12 @@ function ProgressBar({ page, totalPages }: { page: number; totalPages: number })
 const answersCount = (a: Answers) => Object.keys(a).length;
 const missingCount = (qs: Question[], a: Answers) =>
   qs.filter((q) => !a[q.id]).length;
+
+function computePageFromAnswers(ans: Answers) {
+  for (let i = 0; i < pageCount; i++) {
+    const qs = questionsByPage[i];
+    const incomplete = qs.some((q) => !ans[q.id]);
+    if (incomplete) return i;
+  }
+  return pageCount - 1;
+}

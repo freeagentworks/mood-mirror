@@ -33,4 +33,5 @@ export const STORAGE_KEYS = {
   answersDraft: "answers_draft",
   resultLatest: "result_latest",
   consentAnalytics: "consent_analytics",
+  progressPage: "progress_page",
 } as const;

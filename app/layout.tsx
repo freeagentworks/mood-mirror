@@ -57,9 +57,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className="bg-slate-950 text-slate-50">
+    <html
+      lang="ja"
+      className="bg-slate-950 text-slate-50"
+      suppressHydrationWarning
+    >
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-b from-slate-950 via-slate-900 to-slate-900 text-slate-50`}
+        suppressHydrationWarning
       >
         <div className="relative mx-auto min-h-screen max-w-5xl px-6 py-10 sm:px-10">
           <Scene />
