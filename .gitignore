@@ -1,0 +1,28 @@
+# Next.js / Node
+.next
+out
+build
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.DS_Store
+
+# Testing / Coverage / Playwright
+coverage
+playwright-report
+test-results
+.nyc_output
+
+# Env
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Editor
+.vscode
+*.swp
+*.swo
