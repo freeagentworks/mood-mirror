@@ -7,7 +7,13 @@ const buildAnswers = (overrides: Partial<Answers> = {}): Answers => {
   questions.forEach((q) => {
     base[q.id] = overrides[q.id] ?? 3;
   });
-  return { ...base, ...overrides };
+  const filled: Answers = { ...base };
+  Object.entries(overrides).forEach(([id, value]) => {
+    if (typeof value === "number") {
+      filled[Number(id)] = value;
+    }
+  });
+  return filled;
 };
 
 describe("scoreAnswers", () => {
