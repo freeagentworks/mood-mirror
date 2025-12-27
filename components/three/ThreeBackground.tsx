@@ -21,8 +21,8 @@ function Stars() {
     <Points positions={positions} stride={3} frustumCulled>
       <PointMaterial
         transparent
-        color="#b8a7ff"
-        size={0.06}
+        color="#f4d7ff"
+        size={0.055}
         sizeAttenuation
         depthWrite={false}
       />
@@ -37,17 +37,18 @@ export function ThreeBackground() {
       camera={{ position: [0, 0, 6], fov: 50 }}
       gl={{ antialias: true, alpha: true }}
     >
-      <color attach="background" args={["#0c0f1a"]} />
-      <ambientLight intensity={0.6} />
-      <pointLight position={[4, 4, 4]} intensity={1} color="#ffdfba" />
+      <color attach="background" args={["#0b1230"]} />
+      <fog attach="fog" args={["#0b1230", 4, 12]} />
+      <ambientLight intensity={0.5} color="#d5d9ff" />
+      <pointLight position={[4, 4, 4]} intensity={1.1} color="#ffd9b8" />
       <mesh position={[0, 0, 0]}>
         <icosahedronGeometry args={[1.6, 1]} />
         <meshStandardMaterial
-          color="#7ee7ff"
+          color="#9fd7ff"
           metalness={0.2}
-          roughness={0.4}
-          emissive="#7ee7ff"
-          emissiveIntensity={0.2}
+          roughness={0.45}
+          emissive="#c7b7ff"
+          emissiveIntensity={0.15}
           wireframe
         />
       </mesh>

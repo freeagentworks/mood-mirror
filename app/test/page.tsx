@@ -201,14 +201,14 @@ function QuestionCard({
         <span className="text-xs text-slate-300/80">1〜5を選択</span>
         <span>とてもそう思う</span>
       </div>
-      <div className="mt-2 flex flex-wrap gap-2">
+      <div className="mt-2 grid grid-cols-5 gap-2">
         {options.map((opt) => (
           <button
             key={opt}
             type="button"
             onClick={() => onChange(question.id, opt)}
             data-testid={`q-${question.id}-opt-${opt}`}
-            className={`w-12 rounded-full border px-3 py-2 text-sm transition text-center ${
+            className={`w-full rounded-full border px-3 py-2 text-sm transition text-center ${
               value === opt
                 ? "border-cyan-300 bg-cyan-400/20 text-white"
                 : "border-white/15 bg-white/5 text-slate-100 hover:border-white/40"
