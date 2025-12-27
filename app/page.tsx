@@ -54,12 +54,6 @@ export default function Home() {
             FAQ
           </InteractiveCard>
           <InteractiveCard
-            href="/test"
-            className="glass-card border-white/10 bg-white/5 px-3 py-2 text-center text-sm text-white transition hover:border-cyan-300/60 hover:bg-white/10"
-          >
-            診断する
-          </InteractiveCard>
-          <InteractiveCard
             href="/result"
             className="glass-card border-white/10 bg-white/5 px-3 py-2 text-center text-sm text-white transition hover:border-cyan-300/60 hover:bg-white/10"
           >
