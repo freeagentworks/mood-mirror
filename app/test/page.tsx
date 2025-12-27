@@ -25,22 +25,32 @@ const scaleLabels: Record<Scale, string> = {
 
 export default function TestPage() {
   const router = useRouter();
-  const [answers, setAnswers] = useState<Answers>(() =>
-    loadJson<Answers>(STORAGE_KEYS.answersDraft, {}),
-  );
-  const [page, setPage] = useState(() => {
-    const saved = loadJson<number | null>(STORAGE_KEYS.progressPage, null);
-    if (saved !== null) return Math.min(Math.max(saved, 0), pageCount - 1);
-    return computePageFromAnswers(loadJson<Answers>(STORAGE_KEYS.answersDraft, {}));
-  });
+  const [answers, setAnswers] = useState<Answers>({});
+  const [page, setPage] = useState(0);
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
+    const draft = loadJson<Answers>(STORAGE_KEYS.answersDraft, {});
+    const savedPage = loadJson<number | null>(STORAGE_KEYS.progressPage, null);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setAnswers(draft);
+    if (savedPage !== null) {
+      setPage(Math.min(Math.max(savedPage, 0), pageCount - 1));
+    } else {
+      setPage(computePageFromAnswers(draft));
+    }
+    setHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (!hydrated) return;
     saveJson(STORAGE_KEYS.answersDraft, answers);
-  }, [answers]);
+  }, [answers, hydrated]);
 
   useEffect(() => {
+    if (!hydrated) return;
     saveJson(STORAGE_KEYS.progressPage, page);
-  }, [page]);
+  }, [page, hydrated]);
 
   useEffect(() => {
     track({ type: "start" });
@@ -198,7 +208,7 @@ function QuestionCard({
             type="button"
             onClick={() => onChange(question.id, opt)}
             data-testid={`q-${question.id}-opt-${opt}`}
-            className={`rounded-full border px-3 py-2 text-sm transition ${
+            className={`w-12 rounded-full border px-3 py-2 text-sm transition text-center ${
               value === opt
                 ? "border-cyan-300 bg-cyan-400/20 text-white"
                 : "border-white/15 bg-white/5 text-slate-100 hover:border-white/40"
