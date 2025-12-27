@@ -15,7 +15,6 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mood-mirror.example"),
   title: "Mood Mirror",
   description:
     "3D Personality app scaffolded for the Mood Mirror MVP (Next.js 16).",

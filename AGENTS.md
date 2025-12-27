@@ -4,7 +4,7 @@ This guide sets expectations for contributors building the **Next.js 16 + TypeSc
 
 ## Project Structure & Module Organization
 - `docs/` — product, UX, scoring, backlog, prompts, onboarding; read `docs/README.md` for the index.
-- Planned source (per `docs/16_dev_onboarding.md`): `app/` (routes), `components/ui` (shadcn wraps), `components/three` (R3F), `lib/` (scoring/storage/analytics), `data/questions.ts` (48 questions).
+- Planned source (per `docs/16_dev_onboarding.md`): `app/` (routes), `components/ui` (インタラクティブUI), `components/result` (結果/シェア/SDT), `components/three` (R3F, reduced-motion/WebGL fallback), `lib/` (scoring/storage/analytics/narrative/copy), `data/questions.ts` (48 questions).
 - Keep 3D in Client Components with reduced-motion/WebGL fallbacks; avoid `dangerouslySetInnerHTML`.
 
 ## Build, Test, and Development Commands
