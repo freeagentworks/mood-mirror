@@ -4,10 +4,7 @@ export default function PrivacyPage() {
   return (
     <main className="glass-card space-y-4 p-5 sm:p-10">
       <div className="flex justify-between">
-        <Link
-          href="/"
-          className="text-sm text-cyan-200 underline-offset-4 transition hover:underline"
-        >
+        <Link href="/" className="glass-button inline-flex items-center px-3 py-1.5 text-sm">
           ← ホームにもどる
         </Link>
       </div>

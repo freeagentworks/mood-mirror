@@ -93,10 +93,7 @@ export default function TestPage() {
     <main className="glass-card space-y-6 p-5 sm:p-10">
       <header className="space-y-3">
         <div className="flex justify-between">
-          <Link
-            href="/"
-            className="text-sm text-cyan-200 underline-offset-4 transition hover:underline"
-          >
+          <Link href="/" className="glass-button inline-flex items-center px-3 py-1.5 text-sm">
             ← ホームにもどる
           </Link>
         </div>
