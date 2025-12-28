@@ -98,7 +98,9 @@ export default function ResultPage() {
             <li>強み: {narrative.strengths[0]}</li>
             <li>注意: {narrative.watchout}</li>
             <li>
-              Attachment: {result.derived.attachmentStyle} / SDT平均 {result.derived.needsMean.toFixed(1)} / 最低値 {result.derived.needsBottleneck.toFixed(1)}
+              Attachment: {result.derived.attachmentStyle} / やる気の土台平均{" "}
+              {result.derived.needsMean.toFixed(1)} / 最低値{" "}
+              {result.derived.needsBottleneck.toFixed(1)}
             </li>
           </ul>
         </div>
@@ -220,7 +222,9 @@ function Advice({ needsMean, needsBottleneck }: { needsMean: number; needsBottle
   return (
     <div className="glass-card border-white/10 bg-slate-950/50 p-5">
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200/80">今日の一手</p>
-      <p className="text-xs text-slate-300/80">SDT平均 {needsMean.toFixed(1)} / 最低値 {needsBottleneck.toFixed(1)} を底上げ</p>
+      <p className="text-xs text-slate-300/80">
+        やる気の土台平均 {needsMean.toFixed(1)} / 最低値 {needsBottleneck.toFixed(1)} を底上げ
+      </p>
       <ul className="mt-3 space-y-2 text-sm text-slate-200/85">
         {tips.map((tip) => (
           <li key={tip} className="flex items-start gap-2">

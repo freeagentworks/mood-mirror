@@ -24,7 +24,8 @@ export function buildSdtCopy(result: Result): SdtCopy {
 
   return {
     headline: "今の燃料ゲージ",
-    fuelLabel: "自律 / 有能感 / 関係性を“今の燃料”として見える化しました。高いほど元気を感じやすいかも。",
+    fuelLabel:
+      "自律 / 有能感 / 関係性は、やる気の土台になる3つの要素。今の燃料として見える化しました。",
     bottleneckLabel: `${bottleneck.label}が少し詰まり気味かも。今は「${fuelCopy[bottleneck.key]}」にやさしく注目。` ,
     tips: buildTips(bottleneck.key),
   };

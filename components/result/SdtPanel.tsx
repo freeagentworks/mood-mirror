@@ -17,7 +17,9 @@ export function SdtPanel({ result }: { result: Result }) {
 
   return (
     <div className="glass-card border-white/10 bg-slate-950/50 p-5">
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200/80">SDT 3欲求</p>
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200/80">
+        やる気の3つの土台
+      </p>
       <h3 className="mt-2 text-lg font-semibold text-white">{copy.headline}</h3>
       <p className="text-sm text-slate-200/80">{copy.fuelLabel}</p>
 

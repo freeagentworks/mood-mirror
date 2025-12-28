@@ -57,7 +57,10 @@ export function ShareCard({ result }: { result: Result }) {
           </div>
           <div className="rounded-2xl bg-white/50 px-3 py-2 text-xs text-slate-900/80">
             <p className="font-semibold">Attachment: {result.derived.attachmentStyle}</p>
-            <p>SDT平均: {result.derived.needsMean.toFixed(1)} / 最低値: {result.derived.needsBottleneck.toFixed(1)}</p>
+            <p>
+              やる気の土台平均: {result.derived.needsMean.toFixed(1)} / 最低値:{" "}
+              {result.derived.needsBottleneck.toFixed(1)}
+            </p>
           </div>
           {result.quality.reasons.length > 0 && (
             <p className="text-xs text-amber-900">

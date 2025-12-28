@@ -108,10 +108,10 @@ export function buildNarrative(result: Result): Narrative {
   const bottleneckKey = bottleneck(result);
 
   const summaryDetail = `${arche.summary} 上位の強みは「${traitTop.join("・")}` +
-    `」。Attachmentは${result.derived.attachmentStyle}、SDT平均は${result.derived.needsMean.toFixed(1)}。`;
+    `」。Attachmentは${result.derived.attachmentStyle}、やる気の土台平均は${result.derived.needsMean.toFixed(1)}。`;
 
   const watchoutDetail = `${arche.watchout}。${attachmentText[result.derived.attachmentStyle]} ` +
-    `SDTのボトルネックは「${labelBottleneck(bottleneckKey)}」です。`;
+    `やる気の土台で詰まりやすいのは「${labelBottleneck(bottleneckKey)}」です。`;
 
   return {
     headline: arche.headline,
@@ -119,7 +119,7 @@ export function buildNarrative(result: Result): Narrative {
     strengths: [
       arche.strengths,
       `特に伸びている軸: ${traitTop.join(" / ")}`,
-      `SDT平均: ${result.derived.needsMean.toFixed(1)} / Attachment: ${result.derived.attachmentStyle}`,
+      `やる気の土台平均: ${result.derived.needsMean.toFixed(1)} / Attachment: ${result.derived.attachmentStyle}`,
     ],
     watchout: watchoutDetail ,
     actions: [
